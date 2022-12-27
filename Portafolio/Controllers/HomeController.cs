@@ -12,16 +12,26 @@ namespace Portafolio.Controllers
         private readonly ServicioDelimitado servicioDelimitado;
         private readonly ServicioTransitorio servicioTransitorio;
         private readonly ServicioUnico servicioUnico;
+        private readonly ServicioTransitorio servicioTransitorio2;
+        private readonly ServicioUnico servicioUnico2;
+        private readonly ServicioDelimitado servicioDelimitado2;
 
         public HomeController(ILogger<HomeController> logger, IRepositorioProyectos repositorioProyectos,
             ServicioDelimitado servicioDelimitado,
             ServicioTransitorio servicioTransitorio,
-            ServicioUnico servicioUnico)
+            ServicioUnico servicioUnico,
+
+            ServicioDelimitado servicioDelimitado2,
+            ServicioTransitorio servicioTransitorio2,
+            ServicioUnico servicioUnico2)
         {
             _logger = logger;
             this.repositorioProyectos = repositorioProyectos;
             this.servicioDelimitado = servicioDelimitado;
             this.servicioUnico = servicioUnico;
+            this.servicioTransitorio2 = servicioTransitorio2;
+            this.servicioUnico2 = servicioUnico2;
+            this.servicioDelimitado2 = servicioDelimitado2;
             this.servicioTransitorio = servicioTransitorio;
         }
 
@@ -34,10 +44,19 @@ namespace Portafolio.Controllers
                 Transitorio = servicioTransitorio.ObtenerGuid,
                 Unico = servicioUnico.ObtenerGuid,
             };
+
+            var guiViewModel2 = new EjemploGUIDViewModel()
+            {
+                Delimitado = servicioDelimitado2.ObtenerGuid,
+                Transitorio = servicioTransitorio2.ObtenerGuid,
+                Unico = servicioUnico2.ObtenerGuid,
+            };
+
             var modelo = new HomeIndexViewModel()
             {
                 Proyectos = proyectos,
-                EjemploGUID_1 = guiViewModel
+                EjemploGUID_1 = guiViewModel,
+                EjemploGUID_2 = guiViewModel2
             };
             return View(modelo);
         }
