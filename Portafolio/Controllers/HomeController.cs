@@ -18,6 +18,7 @@ namespace Portafolio.Controllers
 
         public IActionResult Index()
         {
+            _logger.LogInformation("Este es un mensaje de log");
             var proyectos = repositorioProyectos.ObtenerProyectos().Take(3).ToList();
             var modelo = new HomeIndexViewModel()
             {
