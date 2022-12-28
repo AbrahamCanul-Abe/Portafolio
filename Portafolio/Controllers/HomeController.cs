@@ -35,6 +35,11 @@ namespace Portafolio.Controllers
             return View();
         }
 
+        [HttpPost] //hay que indicar que accion se quiere realizar, el valor por defecto es httpGet
+        public IActionResult Contacto(ContactoViewModel contactoViewModel)
+        {
+            return View();
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
