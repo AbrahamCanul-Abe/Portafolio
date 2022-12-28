@@ -38,6 +38,11 @@ namespace Portafolio.Controllers
         [HttpPost] //hay que indicar que accion se quiere realizar, el valor por defecto es httpGet
         public IActionResult Contacto(ContactoViewModel contactoViewModel)
         {
+            return RedirectToAction("Gracias");
+        }
+
+        public IActionResult Gracias()
+        {
             return View();
         }
 
