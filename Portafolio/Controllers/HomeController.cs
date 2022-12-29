@@ -8,10 +8,12 @@ namespace Portafolio.Controllers
     public class HomeController : Controller
     {
         private readonly IRepositorioProyectos repositorioProyectos;
-        
-        public HomeController(IRepositorioProyectos repositorioProyectos)
+        private readonly IServicioEmail servicioEmail;
+
+        public HomeController(IRepositorioProyectos repositorioProyectos, IServicioEmail servicioEmail)
         {
             this.repositorioProyectos = repositorioProyectos;
+            this.servicioEmail = servicioEmail;
         }
 
         public IActionResult Index()
@@ -36,8 +38,9 @@ namespace Portafolio.Controllers
         }
 
         [HttpPost] //hay que indicar que accion se quiere realizar, el valor por defecto es httpGet
-        public IActionResult Contacto(ContactoViewModel contactoViewModel)
+        public async Task<IActionResult> Contacto(ContactoViewModel contactoViewModel)
         {
+            await servicioEmail.Enviar(contactoViewModel);
             return RedirectToAction("Gracias");
         }
 
